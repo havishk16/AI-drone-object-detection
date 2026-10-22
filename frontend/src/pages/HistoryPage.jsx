@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getHistory, getImageUrl } from '../utils/api'
 
 function HistoryPage() {
+  const navigate = useNavigate()
   const [history, setHistory] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -229,32 +231,48 @@ function HistoryPage() {
                   <th>Filename</th>
                   <th>Objects Detected</th>
                   <th>Date</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {sortedHistory.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>
-                      <img
-                        src={getImageUrl(item.image_url)}
-                        alt={item.image_filename}
-                        style={{
-                          width: '80px',
-                          height: '60px',
-                          objectFit: 'cover',
-                          borderRadius: '4px'
-                        }}
-                      />
-                    </td>
-                    <td>{item.image_filename}</td>
-                    <td>
-                      <strong style={{ color: '#27ae60' }}>
-                        {item.total_objects}
-                      </strong>
-                    </td>
-                    <td>{formatDate(item.created_at)}</td>
-                  </tr>
+                <tr 
+                  key={item.id}
+                  style={{ cursor: 'pointer' }}
+                  title="Click to view details"
+                >
+                  <td onClick={() => navigate(`/detection/${item.id}`)}>{item.id}</td>
+                  <td onClick={() => navigate(`/detection/${item.id}`)}>
+                    <img
+                      src={getImageUrl(item.image_url)}
+                      alt={item.image_filename}
+                      style={{
+                        width: '80px',
+                        height: '60px',
+                        objectFit: 'cover',
+                        borderRadius: '4px'
+                      }}
+                    />
+                  </td>
+                  <td onClick={() => navigate(`/detection/${item.id}`)}>{item.image_filename}</td>
+                  <td onClick={() => navigate(`/detection/${item.id}`)}>
+                    <strong style={{ color: '#27ae60' }}>
+                      {item.total_objects}
+                    </strong>
+                  </td>
+                  <td onClick={() => navigate(`/detection/${item.id}`)}>{formatDate(item.created_at)}</td>
+                  <td>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        navigate(`/detection/${item.id}`)
+                      }}
+                      style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
+                    >
+                      View Details
+                    </button>
+                  </td>
+                </tr>
                 ))}
               </tbody>
             </table>

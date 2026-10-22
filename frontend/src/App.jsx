@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import UploadPage from './pages/UploadPage'
 import HistoryPage from './pages/HistoryPage'
+import DetailPage from './pages/DetailPage'
 
 function Navigation() {
   const location = useLocation()
@@ -32,6 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<UploadPage />} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/detection/:id" element={<DetailPage />} />
         </Routes>
       </div>
     </Router>

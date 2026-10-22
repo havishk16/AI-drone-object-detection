@@ -160,6 +160,16 @@ th {
 
 tr:hover {
   background-color: #f8f9fa;
+  cursor: default;
+}
+
+tbody tr:hover {
+  background-color: #e3f2fd;
+  cursor: pointer;
+}
+
+tbody tr:active {
+  background-color: #bbdefb;
 }
 
 /* Image container */
