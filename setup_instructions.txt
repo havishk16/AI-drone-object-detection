@@ -1,0 +1,76 @@
+===============================================
+SETUP INSTRUCTIONS - DRONE DETECTION PROJECT
+===============================================
+
+STEP 1: GET THE ONNX MODEL
+---------------------------
+You have 2 options:
+
+OPTION A - Convert in Google Colab (RECOMMENDED):
+1. Open your assignment.ipynb in Google Colab
+2. Add this cell at the end:
+
+   from ultralytics import YOLO
+   from google.colab import files
+   
+   model = YOLO("runs/detect/train/weights/best.pt")
+   onnx_path = model.export(format="onnx", imgsz=640, simplify=True)
+   files.download(onnx_path)
+
+3. Run the cell - it will download best.onnx
+4. Move it to: C:\Github\rayonix\backend\models\best.onnx
+
+OPTION B - Ask for help:
+If you can't convert it, I can help you find another way.
+
+
+STEP 2: VERIFY MODEL EXISTS
+----------------------------
+Run in PowerShell:
+   dir C:\Github\rayonix\backend\models\best.onnx
+
+Expected: File size ~5-6 MB
+
+
+STEP 3: LAUNCH THE APPLICATION
+-------------------------------
+Make sure Docker Desktop is running, then:
+
+   cd C:\Github\rayonix
+   docker compose up --build
+
+Wait 2-3 minutes. You'll see:
+   ✓ Database ready
+   ✓ Backend on port 8000
+   ✓ Frontend on port 3000
+
+
+STEP 4: TEST IT
+---------------
+Open in browser:
+   http://localhost:3000
+
+Upload a drone image and click "Detect Objects"!
+
+
+TROUBLESHOOTING
+---------------
+Issue: "Model not found"
+Fix: Complete Step 1 properly
+
+Issue: "Port already in use"  
+Fix: docker compose down
+     docker compose up --build
+
+Issue: "Can't connect to backend"
+Fix: Check backend is running at http://localhost:8000
+
+
+NEED HELP?
+----------
+Read these files:
+- CONVERT_MODEL_COLAB.md - How to convert model
+- QUICKSTART.md - Full getting started guide
+- README.md - Complete documentation
+
+===============================================

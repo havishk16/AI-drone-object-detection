@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+
+# Database
+*.db
+*.sqlite
+postgres-data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model training artifacts
+datasets/
+datasets.zip
+runs/
+runs.zip
+weights.zip
+detect/
+temp_weights/
+wandb/
+*.pt
+
+# Keep ONNX model
+!best.onnx
+
+# Uploads
+backend/uploads/*.jpg
+backend/uploads/*.png
+!backend/uploads/.gitkeep
+
+# Logs
+*.log
